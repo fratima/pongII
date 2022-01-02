@@ -20,8 +20,12 @@ function balls.update(dt, rakets)
     ball.xPos = ball.xPos + ball.xSpeed * dt
     ball.yPos = ball.yPos + ball.ySpeed * dt
     balls.hitAnything(ball, rakets)
-  end
 
+    if ball.xPos < 0 or ball.xPos > love.graphics.getWidth() then
+      return false
+    end
+  end
+  return true
 end
 
 function balls.hitAnything(ball, rakets)
@@ -38,10 +42,11 @@ end
 
 function balls.hitRaket(ball, rakets)
   for _,raket in pairs(rakets.listOfRakets) do
-    if  (ball.xPos-ball.radius < raket.xPos+raket.width and ball.xPos+ball.radius > raket.xPos) 
+    if  (ball.xPos-ball.radius <= raket.xPos+raket.width and ball.xPos+ball.radius >= raket.xPos) 
         and 
-        (ball.yPos+ball.radius> raket.yPos and ball.yPos-ball.radius < raket.yPos + raket.height) then
+        (ball.yPos+ball.radius >= raket.yPos and ball.yPos-ball.radius <= raket.yPos + raket.height) then
       ball.xSpeed = ball.xSpeed * -1  
+      ball.ySpeed = (raket.height / 2 * ball.yPos) * 0.02
     end
   end
 end
