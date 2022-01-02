@@ -14,6 +14,8 @@ function love.load()
     
     ballColor = {1, 1, 1}
     balls.create(200, 100, 10, ballColor)
+    balls.create(400, 200, 10, ballColor)
+    
 end   
 
 
