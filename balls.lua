@@ -9,8 +9,8 @@ function balls.create(xPos,yPos,radius,color)
   ball.yPos = yPos
   ball.radius = radius
   ball.color = color
-  ball.xSpeed = -300
-  ball.ySpeed = 100
+  ball.xSpeed = love.math.random(-300,300)
+  ball.ySpeed = love.math.random(-100,100)
 
   table.insert(balls.listOfBalls,ball)
 end
@@ -35,7 +35,12 @@ end
 
 
 function balls.hitWalls(ball)
-  if (ball.yPos-ball.radius) < 0 or (ball.yPos+ball.radius) > love.graphics.getHeight( ) then
+  if (ball.yPos-ball.radius) < 0 then
+    ball.yPos = ball.yPos + 3
+    ball.ySpeed = ball.ySpeed * -1
+  end 
+  if (ball.yPos+ball.radius) > love.graphics.getHeight( ) then
+    ball.yPos = ball.yPos - 3
     ball.ySpeed = ball.ySpeed * -1
   end
 end
@@ -46,7 +51,7 @@ function balls.hitRaket(ball, rakets)
         and 
         (ball.yPos+ball.radius >= raket.yPos and ball.yPos-ball.radius <= raket.yPos + raket.height) then
       ball.xSpeed = ball.xSpeed * -1  
-      ball.ySpeed = (raket.height / 2 * ball.yPos) * 0.02
+      ball.ySpeed = ( ball.yPos - raket.height ) 
     end
   end
 end

@@ -10,6 +10,7 @@ function rakets.create(xPos,yPos,width, height,color)
   raket.width = width
   raket.height = height
   raket.color = color
+  --raket.orientation = 
 
   table.insert(rakets.listOfRakets,raket)
 end
@@ -22,7 +23,7 @@ function rakets.draw()
 end
 
 
-function rakets.update()
+function rakets.update(dt)
   rakets.kybControl()
 end
 

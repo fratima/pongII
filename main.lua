@@ -18,7 +18,7 @@ function love.load()
     balls.create(200, 100, 10, ballColor)
     balls.create(250, 100, 10, ballColor)
     
-end   
+end
 
 
 function love.update(dt)
@@ -30,7 +30,7 @@ end
 function love.draw()
     if GameOver then
         love.graphics.draw(GameOverPic,220,120)
-      end
+    end
    balls.draw()
    rakets.draw()
 end
